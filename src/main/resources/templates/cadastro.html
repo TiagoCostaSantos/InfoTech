@@ -6,31 +6,58 @@
     <link rel="icon" href="/static/icon.jpg" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/static/registro.css">
-    <title>Cadastrar</title>
+    <title>Inicio</title>
 </head>
 <body>
 
     <div class="container">
-        <div class="form-box cadastro">
+        <div class="form-box login">
             <form action="">
-                <h1>Cadastro</h1>
+                <h1>Login</h1>
 
                 <div class="input-box">
-                    <input type="email" placeholder="E-mail">
-                    <i class='bx bxs-envelope'></i>
+                    <input type="text" placeholder="Nome de Usuario">
+                    <i class='bx bx-user'></i>
                     </div>
 
                     <div class="input-box">
                     <input type="password" placeholder="Senha">
                     <i class='bx bxs-lock-alt' ></i>
                     </div>
-                    <button type="submit" class="btn">Cadastrar</button>
+                    <button type="submit" class="btn">Login</button>
                 </div>
             </form>
-        </div>
-    </div>
 
+            <div class="form-box cadastro">
+                <form action="">
+                    <h1>Cadastro</h1>
     
+                    <div class="input-box">
+                        <input type="text" placeholder="Nome de Usuario">
+                        <i class='bx bx-user'></i>
+                        </div>
+    
+                        <div class="input-box">
+                            <input type="email" placeholder="E-mail">
+                            <i class='bx bxs-envelope'></i>
+                            </div>
+    
+                        <div class="input-box">
+                        <input type="password" placeholder="Senha"> 
+                        <i class='bx bxs-lock-alt' ></i>
+                        </div>
+                        <button type="submit" class="btn">Cadastrar</button>
+                    </form>
+                    </div>
+                
+                    <div class="toggle-box">
+                        <div class="toggle-panel toggle-left">
+                            <h1>Olá, Bem Vindo!</h1>
+                            <p>Não possui uma conta?</p>
+                            <button class="btn register-btn">cadastre-se agora</button>
+                        </div>
+                    </div>
+        </div>
     
     <script src="/js/script.js"></script>
 </body>
