@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class EstoqueRequest {
 
+    //PK
     private Long id;
 
     //FK - tabela produto

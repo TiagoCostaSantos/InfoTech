@@ -4,19 +4,20 @@ package br.com.infotech.controller;
 import br.com.infotech.controller.requests.ProdutoRequest;
 import br.com.infotech.model.Produto;
 import org.springframework.web.bind.annotation.*;
+
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/prod" +
-        "utos")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
     //listar todos os produtos
     @GetMapping("/listar")
     public String listarProdutos(){
 
-        return "listarProdutos";
+        return "listarProduto";
     }
 
     //listar os produtos por descricao
@@ -30,11 +31,11 @@ public class ProdutoController {
     @PostMapping("/cadastrar")
     public String adicionarProduto(@RequestBody ProdutoRequest produtoRequest){
 
-        return "";
+        return "OK";
     }
 
     //atualizar um produto por Id
-    @PutMapping("/atualizar/{id}")
+    @PatchMapping("/atualizar/{id}")
     public String atualizarProduto(@PathVariable Long id, @RequestBody ProdutoRequest produtoRequest){
 
         return "atualizarProduto";
@@ -45,5 +46,19 @@ public class ProdutoController {
     @DeleteMapping("/excluir/{id}")
     public void deletarProduto(@PathVariable Long id){
 
+        System.out.println("delete");
     }
 }
+
+//create - POST
+//read - get
+//update - put ou patch
+//put - todos os campos necessários
+//patch - somente o campo a ser atualizado
+//delete - detele
+
+//private UUID produtoId; // ID do produto,
+// representado como UUID
+//
+//private UUID foreignKeyId; //
+// FK representada como UUID

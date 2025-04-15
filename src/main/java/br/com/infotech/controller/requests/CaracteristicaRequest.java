@@ -8,6 +8,9 @@ public class CaracteristicaRequest {
     //FK
     private UUID idProduto;
 
+    //FK representada como um UUID
+    private UUID foreignKeyId;
+
     private List<String> descricao;
 
     public UUID getIdProduto() {
@@ -16,6 +19,14 @@ public class CaracteristicaRequest {
 
     public void setIdProduto(UUID idProduto) {
         this.idProduto = idProduto;
+    }
+
+    public UUID getForeignKeyId() {
+        return foreignKeyId;
+    }
+
+    public void setForeignKeyId(UUID foreignKeyId) {
+        this.foreignKeyId = foreignKeyId;
     }
 
     public List<String> getDescricao() {
