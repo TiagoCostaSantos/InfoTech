@@ -38,3 +38,6 @@ public class CaracteristicaRequest {
     }
 }
 
+//create - post
+//read - get
+//update - patch

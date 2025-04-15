@@ -24,7 +24,7 @@ public class EstoqueController {
     }
 
     //atualizar por id
-    @PatchMapping("/atualizar/{id}")
+    @PatchMapping("/atualizar/{id}") //deveria ser por UUID
     public String atualizarEstoque(@PathVariable Long id){
 
         return "atualizarEstoque";

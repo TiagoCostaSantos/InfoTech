@@ -38,5 +38,5 @@ public class EstoqueRequest {
 }
 // id , UUID, qtde
 
-// post
-// update
+// get
+// update - patch
