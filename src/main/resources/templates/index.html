@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Inicio</title>
 </head>
 <body>
 
     <div class="container">
         <h1>Sistema de Produtos</h1>
-    
+
         <div class="button-container">
-            <a href="criar-produto.html" class="btn3">Cadastrar Produto</a>
-            <a href="listar-produtos.html" class="btn3">Listar Produto</a>
+            <a th:href="@{/cadastrar-produto}" class="btn3">Cadastrar Produto</a>
+            <a th:href="@{/listar-produto}" class="btn3">Listar Produto</a>
         </div>
     </div>
-    
+
 </body>
 </html>
