@@ -1,12 +1,8 @@
 package br.com.infotech.controller;
-
+/*
 import br.com.infotech.database.entity.User;
 import br.com.infotech.database.repository.UserRepository;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,3 +23,4 @@ public class TesteController {
         userRepository.save(user);
     }
 }
+*/
