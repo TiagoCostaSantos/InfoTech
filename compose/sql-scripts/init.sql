@@ -22,12 +22,12 @@ CREATE TABLE IF NOT EXISTS caracteristica (
     id INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(255) NOT NULL,
     id_caracteristica VARCHAR (36) NOT NULL,
-    FOREIGN KEY (id_caracteristica) REFERENCES computador(caracteristica)
+    FOREIGN KEY (id_caracteristica) REFERENCES caracteristica(caracteristica)
 );
 
 CREATE TABLE IF NOT EXISTS estoque (
     id INT AUTO_INCREMENT PRIMARY KEY,-- Identificador único do aluno
     descricao VARCHAR(255) NOT NULL,
     id_caracteristica VARCHAR (36) NOT NULL,
-    FOREIGN KEY (id_caracteristica) REFERENCES computador(caracteristica)
+    FOREIGN KEY (id_caracteristica) REFERENCES caracteristica(caracteristica)
 );
