@@ -53,7 +53,7 @@ public class ProdutoRequest {
         this.gamer = gamer;
     }
 
-    public Integer getFoto() {
+    public String getFoto() {
         return foto;
     }
 

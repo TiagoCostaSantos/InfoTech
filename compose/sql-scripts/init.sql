@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS usuario(
 CREATE TABLE IF NOT EXISTS computador (
    id INT AUTO_INCREMENT PRIMARY KEY,
    descricao VARCHAR(50) NOT NULL,
-   valor VARCHAR(50) NOT NULL,
+   valor DECIMAL (10,2) NOT NULL,
    caracteristica VARCHAR(36) NOT NULL,
    data_cadastro DATE,
-   gamer INT(1),
+   gamer TINYINT(1),
    foto LONGTEXT,
    CONSTRAINT uq_caracteristica UNIQUE (caracteristica)
 );

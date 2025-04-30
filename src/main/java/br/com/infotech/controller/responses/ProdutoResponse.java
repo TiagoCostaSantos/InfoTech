@@ -13,16 +13,17 @@ public class ProdutoResponse {
     private Boolean gamer;
     private String foto;
 
-    public ProdutoResponse(Long id, String descricao, Double valor, String caracteristica, LocalDate dataCadastro, Boolean gamer, String foto){
+    public ProdutoResponse(Long id, String descricao, BigDecimal valor, String caracteristica, LocalDate dataCadastro, Boolean gamer, String foto){
         this.id = id;
         this.descricao = descricao;
-        this.valor = valor;
+        this.valor = BigDecimal.valueOf(valor);
         this.caracteristica = caracteristica;
         this.dataCadastro = dataCadastro;
         this.gamer = gamer;
         this.foto = foto;
 
     }
+
 
     public Long getId() {
         return id;

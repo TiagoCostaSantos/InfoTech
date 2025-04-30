@@ -17,7 +17,7 @@ public class ProdutoModel {
     @Column(nullable = false, length = 50)
     private String descricao;
     @Column(nullable = false, length = 50)
-    private Double valor;
+    private BigDecimal valor;
     @Column(nullable = false, length = 36, unique = true)
     private String caracteristica;
     private LocalDate data_cadastro;
@@ -42,7 +42,7 @@ public class ProdutoModel {
         this.descricao = descricao;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
@@ -80,6 +80,9 @@ public class ProdutoModel {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
     }
 }
 //id INT AUTO_INCREMENT PRIMARY KEY,

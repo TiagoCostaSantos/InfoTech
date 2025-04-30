@@ -39,6 +39,34 @@ public class ProdutoService {
         return toResponse(produtoRepository.save(produto));
     }
 
+    public ProdutoResponse buscarPorId(Long id){
+        ProdutoModel produto = produtoRepository.findById(id)
+                .orElseThrow( () -> new RuntimeException("Produto não encontrado"));
+        return toResponse(produto);
+    }
+
+    public ProdutoResponse atualizar(Long id, ProdutoRequest request){
+        ProdutoModel produto = produtoRepository.findById(id)
+                .orElseThrow( () -> new RuntimeException("Produto não encontrado"));
+
+        if(!produto.getCaracteristica().equals(request.getCaracteristica()) &&
+                produtoRepository.existsByCaracteristica(request.getCaracteristica())){
+            throw new RuntimeException("Já existe outro produto com esta caracteristicas");
+        }
+
+        produto.setDescricao(request.getDescricao());
+        produto.setValor(request.getValor());
+        produto.setCaracteristica(request.getCaracteristica());
+        produto.setDataCadastro(request.getDataCadastro());
+        produto.setGamer(request.getGamer());
+        produto.setFoto(request.getFoto());
+
+        return toResponse(produtoRepository.save(produto));
+    }
+
+    private void deletar(Long id) {
+        produtoRepository.deleteById(id);
+    }
 
 
     private ProdutoResponse toResponse(ProdutoModel p) {
