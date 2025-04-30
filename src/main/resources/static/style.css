@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:500');
+.container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+}
+.container h1 {
+    text-align: center;
+    font-size: 48px;
+    color: #7089eb;
+}
+.button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center; 
+}
+.btn3 {
+    padding: 15px 100px;
+  margin:10px 4px;
+  color: #fff;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  display:inline-block;
+}
+.btn3::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #000;
+    -webkit-transform: scaleX(.3);
+    transform: scaleX(.3);
+    opacity: 0;
+    transition: all .3s
+  }
+  .btn3:hover::before{
+    opacity: 1;
+    background-color: #6098FF;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+    transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+  }

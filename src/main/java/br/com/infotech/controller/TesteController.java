@@ -15,7 +15,7 @@ public class TesteController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping
+    @PostMapping("/teste")
     public void teste() {
         Usuario usuario = new Usuario();
         usuario.setNome("Tiago");
