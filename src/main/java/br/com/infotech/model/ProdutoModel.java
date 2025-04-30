@@ -1,28 +1,30 @@
-package br.com.infotech.controller.responses;
+package br.com.infotech.model;
+
+
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ProdutoResponse {
+@Entity
+@Table(name = "computador")
+public class ProdutoModel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 50)
     private String descricao;
-    private BigDecimal valor;
+    @Column(nullable = false, length = 50)
+    private Double valor;
+    @Column(nullable = false, length = 36, unique = true)
     private String caracteristica;
-    private LocalDate dataCadastro;
+    private LocalDate data_cadastro;
     private Boolean gamer;
+
+    @Lob
     private String foto;
-
-    public ProdutoResponse(Long id, String descricao, Double valor, String caracteristica, LocalDate dataCadastro, Boolean gamer, String foto){
-        this.id = id;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.caracteristica = caracteristica;
-        this.dataCadastro = dataCadastro;
-        this.gamer = gamer;
-        this.foto = foto;
-
-    }
 
     public Long getId() {
         return id;
@@ -40,7 +42,7 @@ public class ProdutoResponse {
         this.descricao = descricao;
     }
 
-    public BigDecimal getValor() {
+    public Double getValor() {
         return valor;
     }
 
@@ -56,12 +58,12 @@ public class ProdutoResponse {
         this.caracteristica = caracteristica;
     }
 
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
+    public LocalDate getData_cadastro() {
+        return data_cadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setData_cadastro(LocalDate data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
 
     public Boolean getGamer() {
@@ -80,4 +82,11 @@ public class ProdutoResponse {
         this.foto = foto;
     }
 }
-//private String valor BIGdecimal;
+//id INT AUTO_INCREMENT PRIMARY KEY,
+//descricao VARCHAR(50) NOT NULL,
+//valor VARCHAR(50) NOT NULL,
+//caracteristica VARCHAR(36) NOT NULL,
+//data_cadastro DATE,
+//gamer INT(1),
+//foto LONGTEXT,
+//CONSTRAINT uq_caracteristica UNIQUE (caracteristica)
