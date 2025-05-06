@@ -2,7 +2,7 @@ package br.com.infotech.model;
 
 
 
-public class Cadastro {
+public class Usuario {
 
     private Long id;
 
