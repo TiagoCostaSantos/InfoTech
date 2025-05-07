@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Estilo geral */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(130, 106, 251);
+    color: #333;
+}
+
+/* Paginação */
+.pagination {
+    flex-wrap: wrap;
+}
+
+.pagination .page-item {
+    margin: 0 2px;
+}
+
+.pagination .page-link {
+    min-width: 40px;
+    text-align: center;
+    background-color: rgb(130, 106, 251);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: rgb(88, 56, 250);
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+h1 {
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Tabela */
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-produtos th,
+.tabela-produtos td {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.tabela-produtos th {
+    background-color: rgb(130, 106, 251);
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.tabela-produtos tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.tabela-produtos tr:hover {
+    background-color: #ecebff;
+    cursor: pointer;
+}
+
+.tabela-produtos td {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Botão */
+.btn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    background: #5E5DF0;
+    border-radius: 999px;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 8px 18px;
+    width: fit-content;
+    border: none;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: rgb(88, 56, 250);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .tabela-produtos {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}

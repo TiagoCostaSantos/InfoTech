@@ -29,4 +29,9 @@ public class InicioController {
     public String AbrirListagemProduto(){
         return "listar-produtos";
     }
+
+    @GetMapping("/cadastro")
+    public String CadastrarPessoa(){
+        return "cadastro";
+    }
 }

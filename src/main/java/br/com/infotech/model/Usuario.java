@@ -1,9 +1,13 @@
 package br.com.infotech.model;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-public class Cadastro {
+@Entity
+public class Usuario {
 
+    @Id
     private Long id;
 
     private String nome;
