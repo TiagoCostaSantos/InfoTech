@@ -11,46 +11,22 @@
     <title>Account</title>
 </head>
 <body>
-
-    <div class="wrapper">
-        <div class="form-wrapper Login">
-            <form>
-                <h2>Login</h2>
-                <div class="input-grupo">
-                    <input type="text" required>
-                    <label for="">Username</label>
-                </div>
-                <div class="input-grupo">
-                    <input type="password" required>
-                    <label for="">Senha</label>
-                </div>
-                <div class="lembrar">
-                    <label><input type="checkbox">Lembrar de mim</label>
-                </div>
-                <button type="submit">Logar</button>
-                <div class="registrar-link">
-                    <p>Não tem uma conta?<a class="registrarBtn-link" href="#">Crie uma agora</a></p>
-                </div>
-            </form>
-        </div>
-
+    <center>
         <div class="form-wrapper Cadastro">
-            <form action="">
+
+            <form th:action="@{/usuario/cadastrar}" th:object="${usuario}" method="post">
                 <h2>Cadastrar</h2>
                 <div class="input-grupo">
-                    <input type="hidden">
+                    <input type="text" th:field="*{nome}" id="username" required>
+                    <label for="username">Username</label>
                 </div>
                 <div class="input-grupo">
-                    <input type="text" required>
-                    <label for="">Username</label>
+                    <input type="email" th:field="*{email}" id="email" required>
+                    <label for="email">E-mail</label>
                 </div>
                 <div class="input-grupo">
-                    <input type="email" required>
-                    <label for="">E-mail</label>
-                </div>
-                <div class="input-grupo">
-                    <input type="password" required>
-                    <label for="">Senha</label>
+                    <input type="password" th:field="*{senha}" id="senha" required>
+                    <label for="senha">Senha</label>
                 </div>
                 <div class="lembrar">
                     <label><input type="checkbox">Eu concordo com os termos e condições</label>
@@ -62,7 +38,8 @@
             </form>
         </div>
     </div>
-    
+    </center>
+
 
 </body>
 </html>

@@ -33,20 +33,6 @@ body {
     transition: 1s ease-in-out;
 }
 
-.wrapper.active .form-wrapper.Login {
-    transform: scale(0) translate(-300px, 500px);
-}
-
-.wrapper .form-wrapper.Cadastro {
-    position: absolute;
-    top: 0;
-    transform: scale(0) translate(200px, -500px);
-}
-
-.wrapper.active .form-wrapper.Cadastro {
-    transform: scale(1) translate(0, 0);
-}
-
 h2 {
     font-size: 30px;
     color: #fff;
@@ -54,83 +40,3 @@ h2 {
 
 }
 
-.input-grupo {
-    position: relative;
-    margin: 30px 0;
-    border-bottom: 2px solid #fff;
-
-}
-
-.input-grupo label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .3s;
-}
-
-.input-grupo input {
-    width: 320px;
-    height: 40px;
-    font-size: 16px;
-    color: #fff;
-    padding: 0 5px;
-    background: transparent;
-    border: none;
-    outline: none;
-}
-
-.input-grupo input:focus~label,
-.input-grupo input:valid~label {
-    top: -5px;
-}
-
-.lembrar {
-    margin: -5px 0 15px 5px;
-}
-
-.lembrar label {
-    color: #fff;
-    font-size: 14px;
-}
-
-.lembrar label input {
-    accent-color: #f4157e;
-}
-
-button {
-    position: relative;
-    width: 100%;
-    height: 40px;
-    background-color: #f4157e;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-}
-
-.registrar-link {
-    font-size: 14px;
-    text-align: center;
-    margin: 15px 0 ;
-}
-
-.registrar-link p {
-    color: #fff;
-}
-
-.registrar-link p a {
-    color: #f4157e;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.registrar-link p a:hover {
-    text-decoration: underline;
-
-}

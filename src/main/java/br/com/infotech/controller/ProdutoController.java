@@ -28,7 +28,7 @@ public class ProdutoController {
     }
 
     //cadastrar novo produto
-    @PostMapping("/cadastrar")
+    @PostMapping("/adicionar")
     public String adicionarProduto(@RequestBody ProdutoRequest produtoRequest){
 
         return "OK";
