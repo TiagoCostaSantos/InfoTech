@@ -1,12 +1,10 @@
 package br.com.infotech.controller;
 
-import br.com.infotech.database.entity.User;
-import br.com.infotech.database.repository.UserRepository;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import br.com.infotech.database.entity.Usuario;
+import br.com.infotech.database.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,15 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class TesteController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository usuarioRepository;
 
-    @PostMapping
+    @PostMapping("/teste")
     public void teste() {
-        User user = new User();
-        user.setUser("tiago");
-        user.setGmail("tiago@Gmail.com");
-        user.setSenha("senhateste");
+        Usuario usuario = new Usuario();
+        usuario.setNome("Tiago");
+        usuario.setGmail("tiago@gmail.com");
+        usuario.setSenha("1234");
 
-        userRepository.save(user);
+        usuarioRepository.save(usuario);
+
     }
 }

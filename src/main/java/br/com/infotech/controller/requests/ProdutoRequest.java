@@ -10,8 +10,7 @@ public class ProdutoRequest {
     private String caracteristica;
     private LocalDate dataCadastro;
     private Boolean gamer;
-    private Integer foto;
-
+    private String foto;
 
     public String getDescricao() {
         return descricao;
@@ -57,7 +56,7 @@ public class ProdutoRequest {
         return foto;
     }
 
-    public void setFoto(Integer foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 }

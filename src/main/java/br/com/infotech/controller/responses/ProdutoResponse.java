@@ -16,7 +16,7 @@ public class ProdutoResponse {
     public ProdutoResponse(Long id, String descricao, BigDecimal valor, String caracteristica, LocalDate dataCadastro, Boolean gamer, String foto){
         this.id = id;
         this.descricao = descricao;
-        this.valor = BigDecimal.valueOf(valor);
+        this.valor = valor;
         this.caracteristica = caracteristica;
         this.dataCadastro = dataCadastro;
         this.gamer = gamer;
