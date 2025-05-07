@@ -1,7 +1,10 @@
 package br.com.infotech.controller;
 
+import br.com.infotech.model.Cadastro;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class InicioController {
@@ -9,6 +12,12 @@ public class InicioController {
     @GetMapping("/")
     public String AbrirHome(){
         return "index";
+    }
+
+    @GetMapping("/cadastrar")
+    public String cadastrarUsuario(){
+
+        return "cadastro";
     }
 
     @GetMapping("/cadastrar-produto")

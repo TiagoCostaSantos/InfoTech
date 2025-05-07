@@ -31,7 +31,8 @@ public class ProdutoController {
     @PostMapping("/cadastrar")
     public String adicionarProduto(@RequestBody ProdutoRequest produtoRequest){
 
-        return "OK";
+        return "cadastar-produto";
+
     }
 
     //atualizar um produto por Id
