@@ -13,11 +13,6 @@ public class User {
     private String senha;
     private String gmail;
 
- /*   public User(String user, String senha, String gmail){
-        this.user = user;
-        this.senha = senha;
-        this.gmail = gmail;
- }*/
 
     public String getGmail() {
         return gmail;

@@ -26,6 +26,11 @@ public class UsuarioController {
         return "cadastro";
     }
 
+    @GetMapping("/success")
+    public String mostrarPaginaSucesso() {
+        return "success";
+    }
+
     // Cadastrar um novo usuário
     @PostMapping("/cadastrar")
     public String cadastrarUsuario(@ModelAttribute Usuario usuario) {
@@ -34,7 +39,7 @@ public class UsuarioController {
         user.setGmail(usuario.getEmail());
         user.setSenha(usuario.getSenha());
         userRepository.save(user);
-        return "redirect:/success?sucesso";
+        return "redirect:/usuario/success";
     }
 
 }
