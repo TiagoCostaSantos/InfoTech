@@ -1,22 +1,20 @@
-package br.com.infotech.database.entity;
+package br.com.infotech.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "usuario")
 public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+    private Long id;
+
     private String nome;
-    private String gmail;
+
+    private String email;
+
     private String senha;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,12 +26,12 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getGmail() {
-        return gmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGmail(String gmail) {
-        this.gmail = gmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {
