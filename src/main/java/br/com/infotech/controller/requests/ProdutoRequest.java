@@ -1,13 +1,16 @@
 package br.com.infotech.controller.requests;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class ProdutoRequest {
 
     private String descricao;
     private BigDecimal valor;
+    private String caracteristica;
+    private LocalDate dataCadastro;
     private Boolean gamer;
-    private Integer quantidade;
+    private String foto;
 
     public String getDescricao() {
         return descricao;
@@ -25,6 +28,22 @@ public class ProdutoRequest {
         this.valor = valor;
     }
 
+    public String getCaracteristica() {
+        return caracteristica;
+    }
+
+    public void setCaracteristica(String caracteristica) {
+        this.caracteristica = caracteristica;
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
     public Boolean getGamer() {
         return gamer;
     }
@@ -33,11 +52,13 @@ public class ProdutoRequest {
         this.gamer = gamer;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
+
+//private String valor BIGdecimal;

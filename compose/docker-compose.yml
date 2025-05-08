@@ -16,6 +16,7 @@ services:
 #    command: --bind-address=0.0.0.0
 #    command: --default-authentication-plugin=mysql_native_password
 
+
 volumes:
   mysql_data:
     name: mysql_data # Define um nome fixo para o volume
