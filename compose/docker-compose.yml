@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8.3 # Imagem do MySQL
+    container_name: mysql-container # Nome do container no Docker
+    #    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root # Senha do root do MySQL
+      MYSQL_DATABASE: infodb # Nome do banco de dados
+      MYSQL_USER: user # Usuário do MySQL
+      MYSQL_PASSWORD: user # Senha do MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql  # Mantém os dados do MySQL mesmo após reiniciar o contêiner.
+      - ./sql-scripts:/docker-entrypoint-initdb.d # Apenas na primeira inicialização, executa os scripts SQL
+    ports:
+      - "6306:3306"
+#    command: --bind-address=0.0.0.0
+#    command: --default-authentication-plugin=mysql_native_password
+
+
+volumes:
+  mysql_data:
+    name: mysql_data # Define um nome fixo para o volume
+    driver: local # Armazena os dados localmente. O Docker criará o volume automaticamente
