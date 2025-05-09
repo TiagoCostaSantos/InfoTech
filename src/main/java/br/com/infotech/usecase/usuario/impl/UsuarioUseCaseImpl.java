@@ -1,9 +1,9 @@
-package br.com.infotech.usecase.impl;
+package br.com.infotech.usecase.usuario.impl;
 
 import br.com.infotech.database.entity.UsuarioEntity;
 import br.com.infotech.database.repository.UsuarioRepository;
 import br.com.infotech.model.Usuario;
-import br.com.infotech.usecase.UsuarioUseCase;
+import br.com.infotech.usecase.usuario.UsuarioUseCase;
 import org.springframework.stereotype.Service;
 
 @Service

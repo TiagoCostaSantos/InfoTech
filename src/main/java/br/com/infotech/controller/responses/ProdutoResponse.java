@@ -11,17 +11,14 @@ public class ProdutoResponse {
     private String caracteristica;
     private LocalDate dataCadastro;
     private Boolean gamer;
-    private String foto;
 
-    public ProdutoResponse(Long id, String descricao, BigDecimal valor, String caracteristica, LocalDate dataCadastro, Boolean gamer, String foto){
+    public ProdutoResponse(Long id, String descricao, BigDecimal valor, String caracteristica, LocalDate dataCadastro, Boolean gamer){
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
         this.caracteristica = caracteristica;
         this.dataCadastro = dataCadastro;
         this.gamer = gamer;
-        this.foto = foto;
-
     }
 
 
@@ -73,12 +70,5 @@ public class ProdutoResponse {
         this.gamer = gamer;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
 }
 //private String valor BIGdecimal;

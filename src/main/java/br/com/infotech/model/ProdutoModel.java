@@ -1,30 +1,20 @@
 package br.com.infotech.model;
 
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "computador")
 public class ProdutoModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
     private String descricao;
-    @Column(nullable = false, length = 50)
     private BigDecimal valor;
-    @Column(nullable = false, length = 36, unique = true)
     private String caracteristica;
-    private LocalDate data_cadastro;
+    private LocalDate dataCadastro;
     private Boolean gamer;
 
-    @Lob
-    private String foto;
+
 
     public Long getId() {
         return id;
@@ -58,12 +48,12 @@ public class ProdutoModel {
         this.caracteristica = caracteristica;
     }
 
-    public LocalDate getData_cadastro() {
-        return data_cadastro;
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setData_cadastro(LocalDate data_cadastro) {
-        this.data_cadastro = data_cadastro;
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public Boolean getGamer() {
@@ -74,17 +64,8 @@ public class ProdutoModel {
         this.gamer = gamer;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
-    public void setDataCadastro(LocalDate dataCadastro) {
-    }
 }
+
 //id INT AUTO_INCREMENT PRIMARY KEY,
 //descricao VARCHAR(50) NOT NULL,
 //valor VARCHAR(50) NOT NULL,

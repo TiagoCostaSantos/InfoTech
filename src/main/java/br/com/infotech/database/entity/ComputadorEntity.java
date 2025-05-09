@@ -1,30 +1,33 @@
 package br.com.infotech.database.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-public class Computador {
+@Table(name = "computador")
+public class ComputadorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String descricao;
-    private Integer valor;
-    private String caracteristica;
-    private Date data_cadastro;
-    private boolean gamer;
-    private String foto;
+    private Long id;
 
-    public Integer getId() {
+    @Column(nullable = false, length = 50)
+    private String descricao;
+    @Column(nullable = false, length = 50)
+    private BigDecimal valor;
+    @Column(nullable = false, length = 36, unique = true)
+    private String caracteristica;
+    private LocalDate dataCadastro;
+    private Boolean gamer;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,11 +39,11 @@ public class Computador {
         this.descricao = descricao;
     }
 
-    public Integer getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -52,12 +55,12 @@ public class Computador {
         this.caracteristica = caracteristica;
     }
 
-    public Date getData_cadastro() {
-        return data_cadastro;
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setData_cadastro(Date data_cadastro) {
-        this.data_cadastro = data_cadastro;
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public boolean isGamer() {
@@ -68,11 +71,4 @@ public class Computador {
         this.gamer = gamer;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
 }

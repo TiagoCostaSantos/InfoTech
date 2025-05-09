@@ -13,8 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class ProdutoService {
 
-    @Autowired
-    private ProdutoRepository produtoRepository;
+    private final ProdutoRepository produtoRepository;
+
+    public ProdutoService(ProdutoRepository produtoRepository) {
+        this.produtoRepository = produtoRepository;
+    }
 
     public List<ProdutoResponse> listar(){
         return produtoRepository.findAll()
@@ -32,9 +35,8 @@ public class ProdutoService {
         produto.setDescricao(request.getDescricao());
         produto.setValor(request.getValor());
         produto.setCaracteristica(request.getCaracteristica());
-        produto.setData_cadastro(request.getDataCadastro());
+        produto.setDataCadastro(request.getDataCadastro());
         produto.setGamer(request.getGamer());
-        produto.setFoto(String.valueOf(request.getFoto()));
 
         return toResponse(produtoRepository.save(produto));
     }
@@ -59,7 +61,6 @@ public class ProdutoService {
         produto.setCaracteristica(request.getCaracteristica());
         produto.setDataCadastro(request.getDataCadastro());
         produto.setGamer(request.getGamer());
-        produto.setFoto(request.getFoto());
 
         return toResponse(produtoRepository.save(produto));
     }
@@ -75,9 +76,7 @@ public class ProdutoService {
                 p.getDescricao(),
                 p.getValor(),
                 p.getCaracteristica(),
-                p.getData_cadastro(),
-                p.getGamer(),
-                p.getFoto()
-        );
+                p.getDataCadastro(),
+                p.getGamer());
     }
 }

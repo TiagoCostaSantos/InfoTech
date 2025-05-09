@@ -1,4 +1,4 @@
-package br.com.infotech.usecase;
+package br.com.infotech.usecase.usuario;
 
 import br.com.infotech.model.Usuario;
 
