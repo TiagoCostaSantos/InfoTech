@@ -1,9 +1,7 @@
 package br.com.infotech.controller;
 
-import br.com.infotech.database.entity.User;
-import br.com.infotech.database.repository.UserRepository;
 import br.com.infotech.model.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.infotech.usecase.UsuarioUseCase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UsuarioUseCase usuarioUseCase;
 
-//    @GetMapping("/registrar")
-//    public String CadastrarPessoa(){
-//        return "cadastro";
-//    }
+    public UsuarioController(UsuarioUseCase usuarioUseCase) {
+        this.usuarioUseCase = usuarioUseCase;
+    }
 
     @GetMapping("/cadastro")
     public String mostrarFormularioCadastro(Model model) {
@@ -26,15 +22,20 @@ public class UsuarioController {
         return "cadastro";
     }
 
+    @GetMapping("/success")
+    public String mostrarPaginaSucesso() {
+        return "success";
+    }
+
     // Cadastrar um novo usuário
     @PostMapping("/cadastrar")
     public String cadastrarUsuario(@ModelAttribute Usuario usuario) {
-        User user = new User();
-        user.setUser(usuario.getNome());
-        user.setGmail(usuario.getEmail());
+        Usuario user = new Usuario();
+        user.setNome(usuario.getNome());
+        user.setEmail(usuario.getEmail());
         user.setSenha(usuario.getSenha());
-        userRepository.save(user);
-        return "redirect:/success?sucesso";
+        usuarioUseCase.cadastrarUsuario(user);
+        return "redirect:/usuario/success";
     }
 
 }

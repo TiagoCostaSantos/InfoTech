@@ -2,12 +2,7 @@ package br.com.infotech.controller;
 
 
 import br.com.infotech.controller.requests.ProdutoRequest;
-import br.com.infotech.model.Produto;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
