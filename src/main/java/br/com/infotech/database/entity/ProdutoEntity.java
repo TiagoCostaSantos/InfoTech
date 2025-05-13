@@ -1,26 +1,26 @@
-package br.com.infotech.controller.responses;
+package br.com.infotech.database.entity;
+
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ProdutoResponse {
+@Entity
+@Table(name = "produto")
+public class ProdutoEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 50)
     private String descricao;
+    @Column(nullable = false, length = 50)
     private BigDecimal valor;
+    @Column(nullable = false, length = 36, unique = true)
     private String caracteristica;
     private LocalDate dataCadastro;
     private Boolean gamer;
-
-    public ProdutoResponse(Long id, String descricao, BigDecimal valor, String caracteristica, LocalDate dataCadastro, Boolean gamer){
-        this.id = id;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.caracteristica = caracteristica;
-        this.dataCadastro = dataCadastro;
-        this.gamer = gamer;
-    }
-
 
     public Long getId() {
         return id;
@@ -62,13 +62,12 @@ public class ProdutoResponse {
         this.dataCadastro = dataCadastro;
     }
 
-    public Boolean getGamer() {
+    public boolean getGamer() {
         return gamer;
     }
 
-    public void setGamer(Boolean gamer) {
+    public void setGamer(boolean gamer) {
         this.gamer = gamer;
     }
 
 }
-//private String valor BIGdecimal;
