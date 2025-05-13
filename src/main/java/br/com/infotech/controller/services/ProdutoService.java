@@ -2,9 +2,10 @@ package br.com.infotech.controller.services;
 
 import br.com.infotech.controller.requests.ProdutoRequest;
 import br.com.infotech.controller.responses.ProdutoResponse;
+
+import br.com.infotech.database.entity.ProdutoEntity;
 import br.com.infotech.database.repository.ProdutoRepository;
 import br.com.infotech.model.ProdutoModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class ProdutoService {
             throw new RuntimeException("Já existe um produto com esta caracteristica");
         }
 
-        ProdutoModel produto = new ProdutoModel();
+        ProdutoEntity produto = new ProdutoEntity();
         produto.setDescricao(request.getDescricao());
         produto.setValor(request.getValor());
         produto.setCaracteristica(request.getCaracteristica());
@@ -42,13 +43,13 @@ public class ProdutoService {
     }
 
     public ProdutoResponse buscarPorId(Long id){
-        ProdutoModel produto = produtoRepository.findById(id)
+        ProdutoEntity produto = produtoRepository.findById(id)
                 .orElseThrow( () -> new RuntimeException("Produto não encontrado"));
         return toResponse(produto);
     }
 
     public ProdutoResponse atualizar(Long id, ProdutoRequest request){
-        ProdutoModel produto = produtoRepository.findById(id)
+        ProdutoEntity produto = produtoRepository.findById(id)
                 .orElseThrow( () -> new RuntimeException("Produto não encontrado"));
 
         if(!produto.getCaracteristica().equals(request.getCaracteristica()) &&
@@ -62,6 +63,7 @@ public class ProdutoService {
         produto.setDataCadastro(request.getDataCadastro());
         produto.setGamer(request.getGamer());
 
+
         return toResponse(produtoRepository.save(produto));
     }
 
@@ -70,7 +72,7 @@ public class ProdutoService {
     }
 
 
-    private ProdutoResponse toResponse(ProdutoModel p) {
+    private ProdutoResponse toResponse(ProdutoEntity p) {
         return new ProdutoResponse(
                 p.getId(),
                 p.getDescricao(),

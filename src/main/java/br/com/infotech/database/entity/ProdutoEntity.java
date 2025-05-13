@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
-@Table(name = "computador")
-public class ComputadorEntity {
+@Table(name = "produto")
+public class ProdutoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,7 +62,7 @@ public class ComputadorEntity {
         this.dataCadastro = dataCadastro;
     }
 
-    public boolean isGamer() {
+    public boolean getGamer() {
         return gamer;
     }
 
