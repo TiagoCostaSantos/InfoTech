@@ -8,6 +8,7 @@ public class ProdutoModel {
 
     private Long id;
 
+    private String uuid;
     private String descricao;
     private BigDecimal valor;
     private String caracteristica;
@@ -15,6 +16,13 @@ public class ProdutoModel {
     private Boolean gamer;
 
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Long getId() {
         return id;

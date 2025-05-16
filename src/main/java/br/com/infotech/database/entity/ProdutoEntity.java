@@ -21,6 +21,15 @@ public class ProdutoEntity {
     private String caracteristica;
     private LocalDate dataCadastro;
     private Boolean gamer;
+    private String uuid;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Long getId() {
         return id;

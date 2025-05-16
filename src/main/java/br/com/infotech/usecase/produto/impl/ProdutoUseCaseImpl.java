@@ -26,6 +26,7 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
         entity.setCaracteristica(produtoModel.getCaracteristica());
         entity.setDataCadastro(produtoModel.getDataCadastro());
         entity.setGamer(produtoModel.getGamer());
+        entity.setUuid(produtoModel.getUuid());
         computadorRepository.save(entity);
     }
 

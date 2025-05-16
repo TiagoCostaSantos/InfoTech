@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/produtos")
@@ -33,6 +34,7 @@ public class ProdutoController {
     @PostMapping("/salvar")
     public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel) {
         produtoModel.setDataCadastro(LocalDate.now());
+        produtoModel.setUuid(UUID.randomUUID().toString());
         produtoUseCase.cadastrarProduto(produtoModel);
         return "redirect:/produtos/success1";
     }
