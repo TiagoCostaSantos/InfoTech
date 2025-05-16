@@ -6,6 +6,9 @@ import br.com.infotech.model.ProdutoModel;
 import br.com.infotech.usecase.produto.ProdutoUseCase;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProdutoUseCaseImpl implements ProdutoUseCase {
 
@@ -24,5 +27,22 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
         entity.setDataCadastro(produtoModel.getDataCadastro());
         entity.setGamer(produtoModel.getGamer());
         computadorRepository.save(entity);
+    }
+
+    @Override
+    public List<ProdutoModel> listarTodos() {
+        List<ProdutoEntity> entities = computadorRepository.findAll();
+        return entities.stream().map(this::entityToModel).collect(Collectors.toList());
+    }
+
+    private ProdutoModel entityToModel(ProdutoEntity entity) {
+        ProdutoModel model = new ProdutoModel();
+        model.setId(entity.getId());
+        model.setDescricao(entity.getDescricao());
+        model.setValor(entity.getValor());
+        model.setCaracteristica(entity.getCaracteristica());
+        model.setDataCadastro(entity.getDataCadastro());
+        model.setGamer(entity.getGamer());
+        return model;
     }
 }
