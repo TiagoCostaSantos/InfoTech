@@ -9,35 +9,36 @@
 </head>
 <body>
 
-    <section class="container">
-        <header>Adicionar Produto</header>
-        <form action="#" class="form" th:object="${produto}" action="#"
+<section class="container">
+    <header>Adicionar Produto</header>
 
-              th:action="@{/salvar-estabelecimento}" method="post">
-            <div class="input-box">
-                <label for="">Descrição</label>
-                <input type="text" placeholder="Informe a descrição">
-            </div>
 
-            <div class="input-box">
-                <label for="">Valor</label>
-                <input type="number" placeholder="Informe o valor">
-            </div>
+    <form th:action="@{/produtos/salvar}" th:object="${produto}" method="post" class="form">
+        <div class="input-box">
+            <label for="descricao">Descrição</label>
+            <input id="descricao" type="text" th:field="*{descricao}" placeholder="Informe a descrição" required>
+        </div>
 
-            <div class="input-box">
-                <label for="">Gamer</label>
-                <input type="number" placeholder="Informe se é gamer">
-            </div>
+        <div class="input-box">
+            <label for="valor">Valor</label>
+            <input id="valor" type="number" step="0.01" th:field="*{valor}" placeholder="Informe o valor" required>
+        </div>
 
-            <div class="input-box">
-                <label for="">Quantidade</label>
-                <input type="number" placeholder="Informe a quantidade">
-            </div>
-            <button>Cadastrar</button>
-        </form>
+        <div class="input-box">
+            <label for="caracteristica">Característica</label>
+            <input id="caracteristica" type="text" th:field="*{caracteristica}" placeholder="Informe a característica única" required>
+        </div>
 
-        <a th:href="@{/}" class="btn">Inicio</a>
-    </section>
-    
+        <div class="input-box">
+            <label for="gamer">É Gamer?</label>
+            <input id="gamer" type="checkbox" th:field="*{gamer}">
+        </div>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <a th:href="@{/index}" class="btn">Início</a>
+</section>
+
 </body>
 </html>

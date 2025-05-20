@@ -1,60 +1,48 @@
 package br.com.infotech.controller;
 
-
-import br.com.infotech.controller.requests.ProdutoRequest;
+import br.com.infotech.model.ProdutoModel;
+import br.com.infotech.usecase.produto.ProdutoUseCase;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.time.LocalDate;
+import java.util.UUID;
+
+@Controller
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    //listar todos os produtos
-    @GetMapping("/listar")
-    public String listarProdutos(){
+    private final ProdutoUseCase produtoUseCase;
 
-        return "listarProduto";
+    public ProdutoController(ProdutoUseCase produtoUseCase) {
+        this.produtoUseCase = produtoUseCase;
     }
 
-    //listar os produtos por descricao
-    @GetMapping("/listar/{descricao}")
-    public String listarProdutosPorDescricao(@PathVariable String descricao){
-
-        return "listarProdutosPorDescricao";
+    @GetMapping("/cadastrar")
+    public String mostrarFormularioCadastroP(Model model) {
+        model.addAttribute("produto", new ProdutoModel());
+        return "criar-produto";
     }
 
-    //cadastrar novo produto
-    @PostMapping("/adicionar")
-    public String adicionarProduto(@RequestBody ProdutoRequest produtoRequest){
-
-        return "cadastar-produto";
-
+    @GetMapping("/success1")
+    public String mostrarFormularioCadastroP() {
+        return "success1";
     }
 
-    //atualizar um produto por Id
-    @PatchMapping("/atualizar/{id}")
-    public String atualizarProduto(@PathVariable Long id, @RequestBody ProdutoRequest produtoRequest){
-
-        return "atualizarProduto";
+    // Cadastrar um novo produto
+    @PostMapping("/salvar")
+    public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel) {
+        produtoModel.setDataCadastro(LocalDate.now());
+        produtoModel.setUuid(UUID.randomUUID().toString());
+        produtoUseCase.cadastrarProduto(produtoModel);
+        return "redirect:/produtos/success1";
     }
 
-    //deletar um produto
-    // modificador void não precisa de retorno
-    @DeleteMapping("/excluir/{id}")
-    public void deletarProduto(@PathVariable Long id){
-
-        System.out.println("delete");
+    @GetMapping("/listagem")
+    public String listarProdutos(Model model) {
+        var produtos = produtoUseCase.listarTodos(); //lista//
+        model.addAttribute("produtos", produtos);
+        return "listar-produtos";
     }
 }
-
-//create - POST
-//read - get
-//update - put ou patch
-//put - todos os campos necessários
-//patch - somente o campo a ser atualizado
-//delete - detele
-
-//private UUID produtoId; // ID do produto,
-// representado como UUID
-//
-//private UUID foreignKeyId; //
-// FK representada como UUID
