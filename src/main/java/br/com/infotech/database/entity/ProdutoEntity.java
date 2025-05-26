@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "produto")
@@ -17,19 +19,14 @@ public class ProdutoEntity {
     private String descricao;
     @Column(nullable = false, length = 50)
     private BigDecimal valor;
-    @Column(nullable = false, length = 36, unique = true)
-    private String caracteristica;
     private LocalDate dataCadastro;
-    private Boolean gamer;
     private String uuid;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "estoque_id")
+    private EstoqueEntity estoque;
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CaracteristicaEntity> caracteristicas = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -55,14 +52,6 @@ public class ProdutoEntity {
         this.valor = valor;
     }
 
-    public String getCaracteristica() {
-        return caracteristica;
-    }
-
-    public void setCaracteristica(String caracteristica) {
-        this.caracteristica = caracteristica;
-    }
-
     public LocalDate getDataCadastro() {
         return dataCadastro;
     }
@@ -71,12 +60,30 @@ public class ProdutoEntity {
         this.dataCadastro = dataCadastro;
     }
 
-    public boolean getGamer() {
-        return gamer;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setGamer(boolean gamer) {
-        this.gamer = gamer;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
+    public EstoqueEntity getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(EstoqueEntity estoque) {
+        this.estoque = estoque;
+//        if (estoque != null){
+//            estoque.setProduto(this);
+//        }
+    }
+
+    public List<CaracteristicaEntity> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(List<CaracteristicaEntity> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
 }
