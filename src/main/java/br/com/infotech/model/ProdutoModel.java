@@ -3,6 +3,7 @@ package br.com.infotech.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ProdutoModel {
 
@@ -14,6 +15,7 @@ public class ProdutoModel {
     private Integer qtdEstoque;
     private LocalDate dataCadastro;
     private Boolean gamer;
+    private List<String> caracteristicas;
 
     public Long getId() {
         return id;
@@ -69,5 +71,17 @@ public class ProdutoModel {
 
     public void setGamer(Boolean gamer) {
         this.gamer = gamer;
+    }
+
+    public List<String> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(List<String> caracteristicas) {
+
+        this.caracteristicas = (caracteristicas == null ? List.of() :
+                caracteristicas.stream()
+                        .filter(c -> c != null && !c.trim().isEmpty())
+                        .toList());
     }
 }
