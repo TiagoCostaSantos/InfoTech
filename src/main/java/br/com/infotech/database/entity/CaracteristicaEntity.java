@@ -18,23 +18,26 @@ public class CaracteristicaEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public CaracteristicaEntity setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public CaracteristicaEntity setDescricao(String descricao) {
         this.descricao = descricao;
+        return this;
     }
 
     public ProdutoEntity getProduto() {
         return produto;
     }
 
-    public void setProduto(ProdutoEntity produto) {
+    public CaracteristicaEntity setProduto(ProdutoEntity produto) {
         this.produto = produto;
+        return this;
     }
 }

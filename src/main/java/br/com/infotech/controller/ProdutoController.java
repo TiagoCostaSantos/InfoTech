@@ -1,5 +1,6 @@
 package br.com.infotech.controller;
 
+//import br.com.infotech.controller.requests.ProdutoRequest;
 import br.com.infotech.model.ProdutoModel;
 import br.com.infotech.usecase.produto.ProdutoUseCase;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,8 @@ public class ProdutoController {
 
     // Cadastrar um novo produto
     @PostMapping("/salvar")
-    public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel) {
+    public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel
+    ) {
         produtoModel.setDataCadastro(LocalDate.now());
         produtoModel.setUuid(UUID.randomUUID().toString());
         produtoUseCase.cadastrarProduto(produtoModel);

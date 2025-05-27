@@ -47,22 +47,13 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
         var estoque = estoqueRepository.save(et);
         produto.setEstoque(estoque);
 
+        List<CaracteristicaEntity> caracteristicasEntity = new ArrayList<>();
 
-        CaracteristicaEntity ce = new CaracteristicaEntity();
-        ce.setDescricao("Uma das caracs aqui");
-        ce.setProduto(pe);
+        produtoModel.getCaracteristicas().forEach(descricao -> {
+            caracteristicasEntity.add(new CaracteristicaEntity().setDescricao(descricao).setProduto(pe));
+        });
 
-        CaracteristicaEntity ce2 = new CaracteristicaEntity();
-        ce2.setDescricao("OF THE KING OF THE POWER DOES MATCH");
-        ce2.setProduto(pe);
-
-        CaracteristicaEntity ce3 = new CaracteristicaEntity();
-        ce3.setDescricao("FRULLY FRULLA COM Y E SEM Y PARA COM LIMITE DE PELO MENOS DUZENTO E CINQUENTA E CINCO CARACTERES");
-        ce3.setProduto(pe);
-
-        List<CaracteristicaEntity> todasCaracsAqui = List.of(ce, ce2, ce3);
-
-        var caracs = caracteristicaRepository.saveAll(todasCaracsAqui);
+        var caracs = caracteristicaRepository.saveAll(caracteristicasEntity);
         pe.setCaracteristicas(caracs);
 
 

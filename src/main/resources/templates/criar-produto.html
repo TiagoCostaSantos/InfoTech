@@ -29,6 +29,11 @@
             <input id="estoque" type="text" th:field="*{qtdEstoque}" placeholder="Informe a quantidade em estoque" required>
         </div>
 
+        <div class="input-box" th:each="i : ${#numbers.sequence(0,9)}">
+            <label>Característica [[${i + 1}]]:</label>
+            <input type="text" th:name="caracteristicas"/>
+            <br/>
+        </div>
 
         <button type="submit">Cadastrar</button>
     </form>
