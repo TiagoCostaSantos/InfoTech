@@ -45,4 +45,9 @@ public class ProdutoController {
         model.addAttribute("produtos", produtos);
         return "listar-produtos";
     }
+
+    @GetMapping("/editar-produto")
+    public String editarProduto(@RequestParam UUID uuid, Model model){
+        return "editar-produto";
+    }
 }

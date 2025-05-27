@@ -44,6 +44,7 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
         model.setCaracteristica(entity.getCaracteristica());
         model.setDataCadastro(entity.getDataCadastro());
         model.setGamer(entity.getGamer());
+        model.setUuid(entity.getUuid());
         return model;
     }
 }
