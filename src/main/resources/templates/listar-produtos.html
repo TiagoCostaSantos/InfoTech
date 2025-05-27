@@ -11,7 +11,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Descrição</th>
             <th>Valor</th>
             <th>Característica</th>
@@ -21,7 +20,6 @@
         </thead>
         <tbody>
         <tr th:each="produto : ${produtos}" th:onclick="'redirectToEdit(' + ${produto.id} + ')'" style="cursor:pointer;">
-            <td th:text="${produto.id}"></td>
             <td th:text="${produto.descricao}"></td>
             <td th:text="${#numbers.formatDecimal(produto.valor, 2, 0)}"></td>
             <td th:text="${produto.caracteristica}"></td>

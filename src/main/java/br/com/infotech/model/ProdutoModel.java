@@ -11,18 +11,9 @@ public class ProdutoModel {
     private String uuid;
     private String descricao;
     private BigDecimal valor;
-    private String caracteristica;
+    private Integer qtdEstoque;
     private LocalDate dataCadastro;
     private Boolean gamer;
-
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 
     public Long getId() {
         return id;
@@ -30,6 +21,14 @@ public class ProdutoModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getDescricao() {
@@ -48,12 +47,12 @@ public class ProdutoModel {
         this.valor = valor;
     }
 
-    public String getCaracteristica() {
-        return caracteristica;
+    public Integer getQtdEstoque() {
+        return qtdEstoque;
     }
 
-    public void setCaracteristica(String caracteristica) {
-        this.caracteristica = caracteristica;
+    public void setQtdEstoque(Integer qtdEstoque) {
+        this.qtdEstoque = qtdEstoque;
     }
 
     public LocalDate getDataCadastro() {
@@ -71,14 +70,4 @@ public class ProdutoModel {
     public void setGamer(Boolean gamer) {
         this.gamer = gamer;
     }
-
 }
-
-//id INT AUTO_INCREMENT PRIMARY KEY,
-//descricao VARCHAR(50) NOT NULL,
-//valor VARCHAR(50) NOT NULL,
-//caracteristica VARCHAR(36) NOT NULL,
-//data_cadastro DATE,
-//gamer INT(1),
-//foto LONGTEXT,
-//CONSTRAINT uq_caracteristica UNIQUE (caracteristica)

@@ -45,4 +45,5 @@ public class ProdutoController {
         model.addAttribute("produtos", produtos);
         return "listar-produtos";
     }
+
 }
