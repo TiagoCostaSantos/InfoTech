@@ -14,6 +14,11 @@
 
 
     <form th:action="@{/produtos/salvar}" th:object="${produto}" method="post" class="form">
+
+        <!-- Campo oculto para o ID -->
+        <input type="hidden" name="id" th:value="${uuid}" th:field="*{uuid}">
+
+
         <div class="input-box">
             <label for="descricao">Descrição</label>
             <input id="descricao" type="text" th:field="*{descricao}" placeholder="Informe a descrição" required>

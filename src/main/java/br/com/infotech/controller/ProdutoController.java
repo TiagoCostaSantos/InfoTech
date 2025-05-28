@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Controller
@@ -21,8 +22,16 @@ public class ProdutoController {
     }
 
     @GetMapping("/cadastrar")
-    public String mostrarFormularioCadastroP(Model model) {
-        model.addAttribute("produto", new ProdutoModel());
+    public String mostrarFormularioCadastroP(@RequestParam(required = false) String uuid, Model model) {
+
+
+        if(Objects.nonNull(uuid)){
+            ProdutoModel pm = new ProdutoModel();
+            var produto = produtoUseCase.buscarProduto(uuid);
+            model.addAttribute("produto", produto);
+        } else {
+            model.addAttribute("produto", new ProdutoModel());
+        }
         return "criar-produto";
     }
 
@@ -35,9 +44,24 @@ public class ProdutoController {
     @PostMapping("/salvar")
     public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel
     ) {
-        produtoModel.setDataCadastro(LocalDate.now());
-        produtoModel.setUuid(UUID.randomUUID().toString());
-        produtoUseCase.cadastrarProduto(produtoModel);
+        //TODO: uuid is null ? entao CADASTRAR NOVO, se nao
+        //TODO: Buscar o produto por esse UUID e utilizar o ID para fazer o UPDATE
+        if(Objects.isNull(produtoModel.getUuid())){
+            produtoModel.setDataCadastro(LocalDate.now());
+            produtoModel.setUuid(UUID.randomUUID().toString());
+            produtoUseCase.cadastrarProduto(produtoModel);
+        }
+        var pmDatabase = produtoUseCase.buscarProduto(produtoModel.getUuid());
+        ProdutoModel pm = new ProdutoModel();
+        pm.setId(pmDatabase.getId());
+        pm.setUuid(produtoModel.getUuid());
+
+        pm.setValor(produtoModel.getValor());
+        pm.setDescricao(produtoModel.getDescricao());
+        pm.setQtdEstoque(produtoModel.getQtdEstoque());
+        pm.setDataCadastro(pmDatabase.getDataCadastro());
+        produtoUseCase.cadastrarProduto(pm);
+
         return "redirect:/produtos/success1";
     }
 

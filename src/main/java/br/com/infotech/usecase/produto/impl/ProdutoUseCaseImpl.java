@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,10 +36,12 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
     @Transactional
     public void cadastrarProduto(ProdutoModel produtoModel) {
         ProdutoEntity pe = new ProdutoEntity();
+        pe.setId(produtoModel.getId());
         pe.setDescricao(produtoModel.getDescricao());
         pe.setValor(produtoModel.getValor());
         pe.setDataCadastro(produtoModel.getDataCadastro());
         pe.setUuid(produtoModel.getUuid());
+
         var produto = computadorRepository.save(pe);
 
         EstoqueEntity et = new EstoqueEntity();
@@ -65,11 +68,40 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
         return entities.stream().map(this::entityToModel).collect(Collectors.toList());
     }
 
+    @Override
+    public ProdutoModel buscarProduto(String uuid) {
+        var entity = computadorRepository.findByUuid(uuid);
+        if(entity.isEmpty()){
+            throw new RuntimeException("Nao encontrou produto");
+        }
+        var produtoEntity = entity.get();
+        return new ProdutoModel()
+                .setId(produtoEntity.getId())
+                .setUuid(produtoEntity.getUuid())
+                .setDescricao(produtoEntity.getDescricao())
+                .setValor(produtoEntity.getValor())
+                .setQtdEstoque(produtoEntity.getEstoque().getQuantidade())
+                .setDataCadastro(produtoEntity.getDataCadastro())
+                .setCaracteristicas(produtoEntity.getCaracteristicas()
+                        .stream()
+                        .map(CaracteristicaEntity::getDescricao)
+                        .toList()
+                );
+    }
+
+    /*
+
+    private List<String> caracteristicas;
+     */
+
+
     private ProdutoModel entityToModel(ProdutoEntity entity) {
         ProdutoModel model = new ProdutoModel();
         model.setId(entity.getId());
+        model.setUuid(entity.getUuid());
         model.setDescricao(entity.getDescricao());
         model.setValor(entity.getValor());
+        model.setQtdEstoque(entity.getEstoque().getQuantidade());
         model.setDataCadastro(entity.getDataCadastro());
         return model;
     }

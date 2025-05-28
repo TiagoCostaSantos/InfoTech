@@ -14,74 +14,73 @@ public class ProdutoModel {
     private BigDecimal valor;
     private Integer qtdEstoque;
     private LocalDate dataCadastro;
-    private Boolean gamer;
     private List<String> caracteristicas;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public ProdutoModel setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public ProdutoModel setUuid(String uuid) {
         this.uuid = uuid;
+        return this;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public ProdutoModel setDescricao(String descricao) {
         this.descricao = descricao;
+        return this;
     }
 
     public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public ProdutoModel setValor(BigDecimal valor) {
         this.valor = valor;
+        return this;
     }
 
     public Integer getQtdEstoque() {
         return qtdEstoque;
     }
 
-    public void setQtdEstoque(Integer qtdEstoque) {
+    public ProdutoModel setQtdEstoque(Integer qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
+        return this;
     }
 
     public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
+    public ProdutoModel setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
-    }
-
-    public Boolean getGamer() {
-        return gamer;
-    }
-
-    public void setGamer(Boolean gamer) {
-        this.gamer = gamer;
+        return this;
     }
 
     public List<String> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(List<String> caracteristicas) {
+    public ProdutoModel setCaracteristicas(List<String> caracteristicas) {
 
         this.caracteristicas = (caracteristicas == null ? List.of() :
                 caracteristicas.stream()
                         .filter(c -> c != null && !c.trim().isEmpty())
                         .toList());
+        return this;
     }
+
 }
