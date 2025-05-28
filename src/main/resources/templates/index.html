@@ -6,14 +6,21 @@
     <link rel="stylesheet" href="../style.css">
     <title>Inicio</title>
 </head>
+
+<style>
+    body{
+        background: #e1e2ef;
+    }
+</style>
 <body>
 
     <div class="container">
         <h1>Sistema de Produtos</h1>
 
         <div class="button-container">
-            <a th:href="@{/cadastrar-produto}" class="btn3">Cadastrar Produto</a>
-            <a th:href="@{/listar-produto}" class="btn3">Listar Produto</a>
+            <a th:href="@{/produtos/cadastrar}" class="btn3">Cadastrar Produto</a>
+            <a th:href="@{/produtos/listagem}" class="btn3">Listar Produto</a>
+            <a th:href="@{/usuario/cadastro}" class="btn3">Cadastrar Usuario</a>
         </div>
     </div>
 

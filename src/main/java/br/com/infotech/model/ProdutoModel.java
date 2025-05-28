@@ -1,30 +1,21 @@
 package br.com.infotech.model;
 
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
-@Entity
-@Table(name = "computador")
 public class ProdutoModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
+    private String uuid;
     private String descricao;
-    @Column(nullable = false, length = 50)
     private BigDecimal valor;
-    @Column(nullable = false, length = 36, unique = true)
-    private String caracteristica;
-    private LocalDate data_cadastro;
+    private Integer qtdEstoque;
+    private LocalDate dataCadastro;
     private Boolean gamer;
-
-    @Lob
-    private String foto;
+    private List<String> caracteristicas;
 
     public Long getId() {
         return id;
@@ -32,6 +23,14 @@ public class ProdutoModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getDescricao() {
@@ -50,20 +49,20 @@ public class ProdutoModel {
         this.valor = valor;
     }
 
-    public String getCaracteristica() {
-        return caracteristica;
+    public Integer getQtdEstoque() {
+        return qtdEstoque;
     }
 
-    public void setCaracteristica(String caracteristica) {
-        this.caracteristica = caracteristica;
+    public void setQtdEstoque(Integer qtdEstoque) {
+        this.qtdEstoque = qtdEstoque;
     }
 
-    public LocalDate getData_cadastro() {
-        return data_cadastro;
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setData_cadastro(LocalDate data_cadastro) {
-        this.data_cadastro = data_cadastro;
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public Boolean getGamer() {
@@ -74,22 +73,15 @@ public class ProdutoModel {
         this.gamer = gamer;
     }
 
-    public String getFoto() {
-        return foto;
+    public List<String> getCaracteristicas() {
+        return caracteristicas;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+    public void setCaracteristicas(List<String> caracteristicas) {
 
-    public void setDataCadastro(LocalDate dataCadastro) {
+        this.caracteristicas = (caracteristicas == null ? List.of() :
+                caracteristicas.stream()
+                        .filter(c -> c != null && !c.trim().isEmpty())
+                        .toList());
     }
 }
-//id INT AUTO_INCREMENT PRIMARY KEY,
-//descricao VARCHAR(50) NOT NULL,
-//valor VARCHAR(50) NOT NULL,
-//caracteristica VARCHAR(36) NOT NULL,
-//data_cadastro DATE,
-//gamer INT(1),
-//foto LONGTEXT,
-//CONSTRAINT uq_caracteristica UNIQUE (caracteristica)

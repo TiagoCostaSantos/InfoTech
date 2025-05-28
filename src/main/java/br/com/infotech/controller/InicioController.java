@@ -11,13 +11,13 @@ public class InicioController {
         return "index";
     }
 
-    @GetMapping("/cadastrar-produto")
-    public String AbrirCadastroProduto(){
-        return "criar-produto";
-    }
-
     @GetMapping("/listar-produto")
     public String AbrirListagemProduto(){
         return "listar-produtos";
+    }
+
+    @GetMapping("/cadastro")
+    public String CadastrarPessoa(){
+        return "cadastro";
     }
 }
