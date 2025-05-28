@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+
 }
 
 body {
@@ -12,31 +13,110 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background: darkblue;
+
 }
 
-.wrapper {
+.form-cadastro {
     position: relative;
     width: 400px;
     height: 500px;
-    background: rgba(255, 255, 255, .2);
+    background: rgba(117, 155, 226, 0.488);
     border-radius: 20px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, .1);
-    padding: 40px;
-
-}
-
-.form-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    transition: 1s ease-in-out;
 }
 
 h2 {
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+h2{
     font-size: 30px;
     color: #fff;
     text-align: center;
-
 }
 
+.input-grupo {
+    position: relative;
+    width: 310px;
+    margin: 30px 0;
+    border-bottom: 2px solid #fff;
+}
+
+.input-grupo input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 35px 0 5px;
+}
+
+.input-grupo input:focus ~ label,
+.input-grupo input:valid ~ label{
+    top: -5px;
+}
+
+.input-grupo label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.lembrar{
+    margin: -15px 0 15px;
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lembrar label input{
+    margin-right: 3px;
+}
+
+.lembrar a{
+    color: #fff;
+    text-decoration: none;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: darkblue;
+    font-weight: 600;
+}
+
+.registrar-link{
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.registrar-link p a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.registrar-link p a:hover{
+    text-decoration: underline;
+}
