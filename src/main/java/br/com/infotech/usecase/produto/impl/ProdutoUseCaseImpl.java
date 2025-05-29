@@ -6,13 +6,14 @@ import br.com.infotech.database.entity.ProdutoEntity;
 import br.com.infotech.database.repository.CaracteristicaRepository;
 import br.com.infotech.database.repository.EstoqueRepository;
 import br.com.infotech.database.repository.ProdutoRepository;
+import br.com.infotech.model.EstoqueModel;
 import br.com.infotech.model.ProdutoModel;
 import br.com.infotech.usecase.produto.ProdutoUseCase;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,36 +35,26 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
 
     @Transactional
     public void cadastrarProduto(ProdutoModel produtoModel) {
-        ProdutoEntity pe = new ProdutoEntity();
-        pe.setDescricao(produtoModel.getDescricao());
-        pe.setValor(produtoModel.getValor());
-        pe.setDataCadastro(produtoModel.getDataCadastro());
-        pe.setUuid(produtoModel.getUuid());
-        var produto = computadorRepository.save(pe);
+        String uuidProduto = "".equals(produtoModel.getUuid()) ? null : produtoModel.getUuid();
 
-        EstoqueEntity et = new EstoqueEntity();
-        et.setQuantidade(produtoModel.getQtdEstoque());
-        et.setProduto(produto);
-        var estoque = estoqueRepository.save(et);
-        produto.setEstoque(estoque);
-
-
-        CaracteristicaEntity ce = new CaracteristicaEntity();
-        ce.setDescricao("Uma das caracs aqui");
-        ce.setProduto(pe);
-
-        CaracteristicaEntity ce2 = new CaracteristicaEntity();
-        ce2.setDescricao("OF THE KING OF THE POWER DOES MATCH");
-        ce2.setProduto(pe);
-
-        CaracteristicaEntity ce3 = new CaracteristicaEntity();
-        ce3.setDescricao("FRULLY FRULLA COM Y E SEM Y PARA COM LIMITE DE PELO MENOS DUZENTO E CINQUENTA E CINCO CARACTERES");
-        ce3.setProduto(pe);
-
-        List<CaracteristicaEntity> todasCaracsAqui = List.of(ce, ce2, ce3);
-
-        var caracs = caracteristicaRepository.saveAll(todasCaracsAqui);
-        pe.setCaracteristicas(caracs);
+        if(Objects.isNull(uuidProduto)){
+            ProdutoEntity pe = new ProdutoEntity();
+            pe.setUuid(UUID.randomUUID().toString());
+            pe.setDescricao(produtoModel.getDescricao());
+            pe.setValor(produtoModel.getValor());
+            pe.setDataCadastro(LocalDate.now());
+            pe.setEstoque(new EstoqueEntity().setQuantidade(produtoModel.getEstoque().getQuantidade())
+                    .setProduto(pe));
+            computadorRepository.save(pe);
+        } else {
+            var produtoOptional = computadorRepository.findByUuid(uuidProduto);
+            if(produtoOptional.isEmpty()) throw new RuntimeException("Produto nao encontrado");
+            var produtoEntity = produtoOptional.get();
+            produtoEntity.setDescricao(produtoModel.getDescricao());
+            produtoEntity.setValor(produtoModel.getValor());
+            produtoEntity.getEstoque().setQuantidade(produtoModel.getEstoque().getQuantidade());
+            computadorRepository.save(produtoEntity);
+        }
 
 
     }
@@ -74,24 +65,46 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
         return entities.stream().map(this::entityToModel).collect(Collectors.toList());
     }
 
-    // buscar produtos pelo Uuid
     @Override
-    @Transactional(readOnly = true)
-    public ProdutoModel buscarProdutoPorUuid(String uuid) {
-        ProdutoEntity produtoEntity = computadorRepository.findByUuid(uuid)
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado com UUID: " + uuid));
-
-        return entityToModel(produtoEntity);
+    public ProdutoModel buscarProduto(String uuid) {
+        var entity = computadorRepository.findByUuid(uuid);
+        if(entity.isEmpty()){
+            throw new RuntimeException("Nao encontrou produto");
+        }
+        var produtoEntity = entity.get();
+        return new ProdutoModel()
+                .setId(produtoEntity.getId())
+                .setUuid(produtoEntity.getUuid())
+                .setDescricao(produtoEntity.getDescricao())
+                .setValor(produtoEntity.getValor())
+                .setDataCadastro(produtoEntity.getDataCadastro())
+//                .setCaracteristicas(produtoEntity.getCaracteristicas()
+//                        .stream()
+//                        .map(CaracteristicaEntity::getDescricao)
+//                        .toList()
+//                );
+                .setEstoque(new EstoqueModel().setId(produtoEntity.getEstoque().getId())
+                        .setQuantidade(produtoEntity.getEstoque().getQuantidade()));
     }
+
+    /*
+
+    private List<String> caracteristicas;
+     */
+
 
     private ProdutoModel entityToModel(ProdutoEntity entity) {
         ProdutoModel model = new ProdutoModel();
         model.setId(entity.getId());
+        model.setUuid(entity.getUuid());
         model.setDescricao(entity.getDescricao());
         model.setValor(entity.getValor());
         model.setDataCadastro(entity.getDataCadastro());
-//        model.setGamer(entity.getGamer());
-        model.setUuid(entity.getUuid());
+        model.setEstoque(new EstoqueModel().setId(entity.getEstoque().getId())
+                .setQuantidade(entity.getEstoque().getQuantidade())
+                .setProduto(model));
+
         return model;
     }
+
 }

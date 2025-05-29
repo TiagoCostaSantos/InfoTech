@@ -10,6 +10,6 @@ public interface ProdutoUseCase {
 
     List<ProdutoModel> listarTodos();
 
-    ProdutoModel buscarProdutoPorUuid(String uuid);
+    ProdutoModel buscarProduto(String uuid);
 
 }

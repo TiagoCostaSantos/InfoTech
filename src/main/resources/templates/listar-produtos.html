@@ -11,29 +11,23 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Uuid</th>
             <th>Descrição</th>
             <th>Valor</th>
             <th>Característica</th>
             <th>Data Cadastro</th>
             <th>Gamer</th>
-            <th>Editar</th>
         </tr>
         </thead>
         <tbody>
-<!--        <tr th:each="produto : ${produtos}" th:onclick="'redirectToEdit(' + ${produto.id} + ')'" style="cursor:pointer;">-->
-        <tr th:each="produto : ${produtos}" style="cursor:pointer;" th:onclick="|window.location.href='@{/produtos/editar-produto(uuid=${produto.uuid})}'|">
-            <td th:text="${produto.id}"></td>
-            <td th:text="${produto.uuid}"></td>
+        <tr th:each="produto : ${produtos}" th:onclick="location.href='/produtos/cadastrar?uuid=' + [[${produto.uuid}]]"  style="cursor:pointer;">
+
+
             <td th:text="${produto.descricao}"></td>
             <td th:text="${#numbers.formatDecimal(produto.valor, 2, 0)}"></td>
-
+<!--            <td th:text="${produto.caracteristica}"></td>-->
             <td th:text="${produto.dataCadastro}"></td>
-            <td th:text="${produto.gamer} ? 'sim' : 'não'"></td>
-<!--            <td><a th:href="@{/produtos/editar-produto/uuid=${produto.uuid}}">Editar</a></td>-->
+<!--            <td th:text="${produto.gamer} ? 'sim' : 'não'"></td>-->
         </tr>
-
         </tbody>
     </table>
     <a th:href="@{/}" class="btn btn-warning">Voltar início</a>

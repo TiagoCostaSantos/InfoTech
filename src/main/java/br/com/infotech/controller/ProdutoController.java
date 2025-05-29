@@ -1,5 +1,7 @@
 package br.com.infotech.controller;
 
+//import br.com.infotech.controller.requests.ProdutoRequest;
+import br.com.infotech.model.EstoqueModel;
 import br.com.infotech.model.ProdutoModel;
 import br.com.infotech.usecase.produto.ProdutoUseCase;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Controller
@@ -20,8 +23,14 @@ public class ProdutoController {
     }
 
     @GetMapping("/cadastrar")
-    public String mostrarFormularioCadastroP(Model model) {
-        model.addAttribute("produto", new ProdutoModel());
+    public String mostrarFormularioCadastroP(@RequestParam(required = false) String uuid, Model model) {
+
+        if(Objects.nonNull(uuid)){
+            var produto = produtoUseCase.buscarProduto(uuid);
+            model.addAttribute("produto", produto);
+        } else {
+            model.addAttribute("produto", new ProdutoModel());
+        }
         return "criar-produto";
     }
 
@@ -32,9 +41,8 @@ public class ProdutoController {
 
     // Cadastrar um novo produto
     @PostMapping("/salvar")
-    public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel) {
-        produtoModel.setDataCadastro(LocalDate.now());
-        produtoModel.setUuid(UUID.randomUUID().toString());
+    public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel
+    ) {
         produtoUseCase.cadastrarProduto(produtoModel);
         return "redirect:/produtos/success1";
     }
