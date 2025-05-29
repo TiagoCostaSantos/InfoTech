@@ -9,4 +9,7 @@ public interface ProdutoUseCase {
     void cadastrarProduto(ProdutoModel produtoModel);
 
     List<ProdutoModel> listarTodos();
+
+    ProdutoModel buscarProdutoPorUuid(String uuid);
+
 }

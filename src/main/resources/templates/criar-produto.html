@@ -23,21 +23,14 @@
             <label for="valor">Valor</label>
             <input id="valor" type="number" step="0.01" th:field="*{valor}" placeholder="Informe o valor" required>
         </div>
-
         <div class="input-box">
-            <label for="caracteristica">Característica</label>
-            <input id="caracteristica" type="text" th:field="*{caracteristica}" placeholder="Informe a característica única" required>
+            <label for="estoque">Estoque</label>
+            <input id="estoque" type="text" th:field="*{qtdEstoque}" placeholder="Informe a quantidade em estoque" required>
         </div>
-
-        <div class="input-box">
-            <label for="gamer">É Gamer?</label>
-            <input id="gamer" type="checkbox" th:field="*{gamer}">
-        </div>
-
         <button type="submit">Cadastrar</button>
     </form>
 
-    <a th:href="@{/index}" class="btn">Início</a>
+    <a th:href="@{/}" class="btn">Início</a>
 </section>
 
 </body>
