@@ -12,7 +12,7 @@ public class ProdutoModel {
     private String uuid;
     private String descricao;
     private BigDecimal valor;
-    private Integer qtdEstoque;
+    private EstoqueModel estoque;
     private LocalDate dataCadastro;
     private List<String> caracteristicas;
 
@@ -52,12 +52,12 @@ public class ProdutoModel {
         return this;
     }
 
-    public Integer getQtdEstoque() {
-        return qtdEstoque;
+    public EstoqueModel getEstoque() {
+        return estoque;
     }
 
-    public ProdutoModel setQtdEstoque(Integer qtdEstoque) {
-        this.qtdEstoque = qtdEstoque;
+    public ProdutoModel setEstoque(EstoqueModel qtdEstoque) {
+        this.estoque = qtdEstoque;
         return this;
     }
 

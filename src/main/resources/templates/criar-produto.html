@@ -16,7 +16,9 @@
     <form th:action="@{/produtos/salvar}" th:object="${produto}" method="post" class="form">
 
         <!-- Campo oculto para o ID -->
-        <input type="hidden" name="id" th:value="${uuid}" th:field="*{uuid}">
+<!--        <input type="hidden" name="id" th:value="${uuid}" th:field="*{uuid}">-->
+        <input type="hidden" name="id" th:field="*{uuid}"
+               th:value="${uuid != null} ? ${uuid} : null">
 
 
         <div class="input-box">
@@ -31,14 +33,9 @@
 
         <div class="input-box">
             <label for="estoque">Estoque</label>
-            <input id="estoque" type="text" th:field="*{qtdEstoque}" placeholder="Informe a quantidade em estoque" required>
+            <input id="estoque" type="text" th:field="*{estoque.quantidade}" placeholder="Informe a quantidade em estoque" required>
         </div>
 
-        <div class="input-box" th:each="i : ${#numbers.sequence(0,9)}">
-            <label>Característica [[${i + 1}]]:</label>
-            <input type="text" th:name="caracteristicas"/>
-            <br/>
-        </div>
 
         <button type="submit">Cadastrar</button>
     </form>

@@ -1,6 +1,7 @@
 package br.com.infotech.controller;
 
 //import br.com.infotech.controller.requests.ProdutoRequest;
+import br.com.infotech.model.EstoqueModel;
 import br.com.infotech.model.ProdutoModel;
 import br.com.infotech.usecase.produto.ProdutoUseCase;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,7 @@ public class ProdutoController {
     @GetMapping("/cadastrar")
     public String mostrarFormularioCadastroP(@RequestParam(required = false) String uuid, Model model) {
 
-
         if(Objects.nonNull(uuid)){
-            ProdutoModel pm = new ProdutoModel();
             var produto = produtoUseCase.buscarProduto(uuid);
             model.addAttribute("produto", produto);
         } else {
@@ -44,24 +43,7 @@ public class ProdutoController {
     @PostMapping("/salvar")
     public String cadastrarProduto(@ModelAttribute ProdutoModel produtoModel
     ) {
-        //TODO: uuid is null ? entao CADASTRAR NOVO, se nao
-        //TODO: Buscar o produto por esse UUID e utilizar o ID para fazer o UPDATE
-        if(Objects.isNull(produtoModel.getUuid())){
-            produtoModel.setDataCadastro(LocalDate.now());
-            produtoModel.setUuid(UUID.randomUUID().toString());
-            produtoUseCase.cadastrarProduto(produtoModel);
-        }
-        var pmDatabase = produtoUseCase.buscarProduto(produtoModel.getUuid());
-        ProdutoModel pm = new ProdutoModel();
-        pm.setId(pmDatabase.getId());
-        pm.setUuid(produtoModel.getUuid());
-
-        pm.setValor(produtoModel.getValor());
-        pm.setDescricao(produtoModel.getDescricao());
-        pm.setQtdEstoque(produtoModel.getQtdEstoque());
-        pm.setDataCadastro(pmDatabase.getDataCadastro());
-        produtoUseCase.cadastrarProduto(pm);
-
+        produtoUseCase.cadastrarProduto(produtoModel);
         return "redirect:/produtos/success1";
     }
 

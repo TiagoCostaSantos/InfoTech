@@ -12,24 +12,27 @@ public class EstoqueModel {
         return id;
     }
 
-    public void setId(Long id) {
+    public EstoqueModel setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Integer quantidade) {
+    public EstoqueModel setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+        return this;
     }
 
     public ProdutoModel getProduto() {
         return produto;
     }
 
-    public void setProduto(ProdutoModel produto) {
+    public EstoqueModel setProduto(ProdutoModel produto) {
         this.produto = produto;
+        return this;
     }
 
 }
