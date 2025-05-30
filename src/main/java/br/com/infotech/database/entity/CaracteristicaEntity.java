@@ -10,6 +10,7 @@ public class CaracteristicaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
+    private String uuid;
     @ManyToOne
     @JoinColumn(name = "produto_id", nullable = false)
     private ProdutoEntity produto;
@@ -29,6 +30,15 @@ public class CaracteristicaEntity {
 
     public CaracteristicaEntity setDescricao(String descricao) {
         this.descricao = descricao;
+        return this;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public CaracteristicaEntity setUuid(String uuid) {
+        this.uuid = uuid;
         return this;
     }
 

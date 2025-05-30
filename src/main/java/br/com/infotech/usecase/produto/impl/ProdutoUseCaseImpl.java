@@ -6,6 +6,7 @@ import br.com.infotech.database.entity.ProdutoEntity;
 import br.com.infotech.database.repository.CaracteristicaRepository;
 import br.com.infotech.database.repository.EstoqueRepository;
 import br.com.infotech.database.repository.ProdutoRepository;
+import br.com.infotech.model.CaracteriscaModel;
 import br.com.infotech.model.EstoqueModel;
 import br.com.infotech.model.ProdutoModel;
 import br.com.infotech.usecase.produto.ProdutoUseCase;
@@ -36,7 +37,7 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
     @Transactional
     public void cadastrarProduto(ProdutoModel produtoModel) {
         String uuidProduto = "".equals(produtoModel.getUuid()) ? null : produtoModel.getUuid();
-
+        limparCaracteristicasVazias(produtoModel);
         if(Objects.isNull(uuidProduto)){
             ProdutoEntity pe = new ProdutoEntity();
             pe.setUuid(UUID.randomUUID().toString());
@@ -45,6 +46,13 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
             pe.setDataCadastro(LocalDate.now());
             pe.setEstoque(new EstoqueEntity().setQuantidade(produtoModel.getEstoque().getQuantidade())
                     .setProduto(pe));
+            pe.setCaracteristicas(produtoModel.getCaracteristicas()
+                    .stream().map(cm -> new CaracteristicaEntity()
+                            .setId(cm.getId())
+                            .setDescricao(cm.getDescricao())
+                            .setUuid(cm.getUuid())
+                            .setProduto(pe))
+                    .collect(Collectors.toList()));
             computadorRepository.save(pe);
         } else {
             var produtoOptional = computadorRepository.findByUuid(uuidProduto);
@@ -53,6 +61,8 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
             produtoEntity.setDescricao(produtoModel.getDescricao());
             produtoEntity.setValor(produtoModel.getValor());
             produtoEntity.getEstoque().setQuantidade(produtoModel.getEstoque().getQuantidade());
+            validarCaracteristicas(produtoModel.getCaracteristicas(), produtoEntity);
+
             computadorRepository.save(produtoEntity);
         }
 
@@ -72,26 +82,22 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
             throw new RuntimeException("Nao encontrou produto");
         }
         var produtoEntity = entity.get();
-        return new ProdutoModel()
+        ProdutoModel p = new ProdutoModel()
                 .setId(produtoEntity.getId())
                 .setUuid(produtoEntity.getUuid())
                 .setDescricao(produtoEntity.getDescricao())
                 .setValor(produtoEntity.getValor())
                 .setDataCadastro(produtoEntity.getDataCadastro())
-//                .setCaracteristicas(produtoEntity.getCaracteristicas()
-//                        .stream()
-//                        .map(CaracteristicaEntity::getDescricao)
-//                        .toList()
-//                );
                 .setEstoque(new EstoqueModel().setId(produtoEntity.getEstoque().getId())
                         .setQuantidade(produtoEntity.getEstoque().getQuantidade()));
+        return p.setCaracteristicas(produtoEntity.getCaracteristicas()
+                .stream().map(cm -> new CaracteriscaModel()
+                        .setId(cm.getId())
+                        .setDescricao(cm.getDescricao())
+                        .setUuid(cm.getUuid())
+                        .setProduto(p))
+                .collect(Collectors.toList()));
     }
-
-    /*
-
-    private List<String> caracteristicas;
-     */
-
 
     private ProdutoModel entityToModel(ProdutoEntity entity) {
         ProdutoModel model = new ProdutoModel();
@@ -105,6 +111,38 @@ public class ProdutoUseCaseImpl implements ProdutoUseCase {
                 .setProduto(model));
 
         return model;
+    }
+
+    private void limparCaracteristicasVazias(ProdutoModel produtoModel){
+        if (produtoModel.getCaracteristicas() != null) {
+            var caracteristicasValidas = produtoModel.getCaracteristicas()
+                    .stream()
+                    .filter(c -> c != null && c.getDescricao() != null && !c.getDescricao().trim().isEmpty())
+                    .collect(Collectors.toList());
+            produtoModel.setCaracteristicas(caracteristicasValidas);
+        }
+    }
+
+    private void validarCaracteristicas(List<CaracteriscaModel> caracteristicasTela, ProdutoEntity produtoEntity){
+        caracteristicasTela.forEach(tela -> {
+            if(Objects.isNull(tela.getUuid())){
+                produtoEntity.getCaracteristicas().add(new CaracteristicaEntity()
+                        .setUuid(UUID.randomUUID().toString())
+                        .setDescricao(tela.getDescricao())
+                        .setProduto(produtoEntity));
+            } else  {
+                var caracteristicaEntityOpt = caracteristicaRepository.findByUuid(tela.getUuid());
+                if(caracteristicaEntityOpt.isEmpty()) throw new RuntimeException("Caracteristica nao localizada");
+                var caracteristicaEntity = caracteristicaEntityOpt.get();
+                if(caracteristicaEntity.getUuid().equals(tela.getUuid()) && !caracteristicaEntity.getDescricao().equals(tela.getDescricao())){
+                    produtoEntity.getCaracteristicas()
+                            .stream()
+                            .filter(c -> c.getUuid().equals(tela.getUuid()))
+                            .forEach(c2 -> c2.setDescricao(tela.getDescricao()));
+                }
+
+            }
+        });
     }
 
 }

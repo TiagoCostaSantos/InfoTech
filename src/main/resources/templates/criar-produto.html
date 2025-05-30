@@ -36,6 +36,22 @@
             <input id="estoque" type="text" th:field="*{estoque.quantidade}" placeholder="Informe a quantidade em estoque" required>
         </div>
 
+        <div class="input-box" th:each="i : ${#numbers.sequence(0, 4)}">
+            <label>Característica [[${i + 1}]]:</label>
+
+            <!-- Campo oculto para o ID/UUID da característica -->
+            <input type="hidden"
+                   th:name="*{'caracteristicas[' + __${i}__ + '].uuid'}"
+                   th:if="${produto.caracteristicas != null && produto.caracteristicas.size() > i}"
+                   th:value="${produto.caracteristicas[i].uuid}"  />
+
+
+            <input type="text"
+                   th:name="*{'caracteristicas[' + __${i}__ + '].descricao'}"
+                   th:value="${produto.caracteristicas != null && produto.caracteristicas.size() > i} ? ${produto.caracteristicas[i]?.descricao} : ''" />
+            <br/>
+        </div>
+
 
         <button type="submit">Cadastrar</button>
     </form>
