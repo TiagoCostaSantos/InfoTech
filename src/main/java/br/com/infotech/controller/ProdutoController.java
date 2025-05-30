@@ -1,6 +1,7 @@
 package br.com.infotech.controller;
 
 //import br.com.infotech.controller.requests.ProdutoRequest;
+import br.com.infotech.model.CaracteriscaModel;
 import br.com.infotech.model.EstoqueModel;
 import br.com.infotech.model.ProdutoModel;
 import br.com.infotech.usecase.produto.ProdutoUseCase;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -29,7 +32,13 @@ public class ProdutoController {
             var produto = produtoUseCase.buscarProduto(uuid);
             model.addAttribute("produto", produto);
         } else {
-            model.addAttribute("produto", new ProdutoModel());
+            ProdutoModel produtoModel = new ProdutoModel();
+            // Inicializa com 5 características vazias
+            List<CaracteriscaModel> caracteristicas = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {
+                caracteristicas.add(new CaracteriscaModel().setUuid(UUID.randomUUID().toString()));
+            }
+            model.addAttribute("produto", produtoModel.setCaracteristicas(caracteristicas));
         }
         return "criar-produto";
     }
