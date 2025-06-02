@@ -19,12 +19,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="produto : ${produtos}" th:onclick="'redirectToEdit(' + ${produto.id} + ')'" style="cursor:pointer;">
+        <tr th:each="produto : ${produtos}" th:onclick="location.href='/produtos/cadastrar?uuid=' + [[${produto.uuid}]]"  style="cursor:pointer;">
+
+
             <td th:text="${produto.descricao}"></td>
             <td th:text="${#numbers.formatDecimal(produto.valor, 2, 0)}"></td>
-            <td th:text="${produto.caracteristica}"></td>
+<!--            <td th:text="${produto.caracteristica}"></td>-->
             <td th:text="${produto.dataCadastro}"></td>
-            <td th:text="${produto.gamer} ? 'sim' : 'não'"></td>
+<!--            <td th:text="${produto.gamer} ? 'sim' : 'não'"></td>-->
         </tr>
         </tbody>
     </table>

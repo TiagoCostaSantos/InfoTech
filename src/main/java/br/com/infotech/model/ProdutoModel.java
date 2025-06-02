@@ -3,6 +3,7 @@ package br.com.infotech.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoModel {
@@ -12,76 +13,73 @@ public class ProdutoModel {
     private String uuid;
     private String descricao;
     private BigDecimal valor;
-    private Integer qtdEstoque;
+    private EstoqueModel estoque;
     private LocalDate dataCadastro;
-    private Boolean gamer;
-    private List<String> caracteristicas;
+    private List<CaracteriscaModel> caracteristicas;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public ProdutoModel setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public ProdutoModel setUuid(String uuid) {
         this.uuid = uuid;
+        return this;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public ProdutoModel setDescricao(String descricao) {
         this.descricao = descricao;
+        return this;
     }
 
     public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public ProdutoModel setValor(BigDecimal valor) {
         this.valor = valor;
+        return this;
     }
 
-    public Integer getQtdEstoque() {
-        return qtdEstoque;
+    public EstoqueModel getEstoque() {
+        return estoque;
     }
 
-    public void setQtdEstoque(Integer qtdEstoque) {
-        this.qtdEstoque = qtdEstoque;
+    public ProdutoModel setEstoque(EstoqueModel qtdEstoque) {
+        this.estoque = qtdEstoque;
+        return this;
     }
 
     public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
+    public ProdutoModel setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+        return this;
     }
 
-    public Boolean getGamer() {
-        return gamer;
-    }
-
-    public void setGamer(Boolean gamer) {
-        this.gamer = gamer;
-    }
-
-    public List<String> getCaracteristicas() {
+    public List<CaracteriscaModel> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(List<String> caracteristicas) {
-
-        this.caracteristicas = (caracteristicas == null ? List.of() :
-                caracteristicas.stream()
-                        .filter(c -> c != null && !c.trim().isEmpty())
-                        .toList());
+    public ProdutoModel setCaracteristicas(List<CaracteriscaModel> caracteristicas) {
+        this.caracteristicas = caracteristicas != null ?
+                new ArrayList<>(caracteristicas) : // Garante que seja mutável
+                new ArrayList<>();
+        return this;
     }
+
 }

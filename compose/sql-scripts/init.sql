@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS produto (
 CREATE TABLE IF NOT EXISTS caracteristica (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(255) NOT NULL,
+     uuid VARCHAR(36) UNIQUE NOT NULL,
     produto_id BIGINT,
     CONSTRAINT FK_caracteristica_produto FOREIGN KEY (produto_id)
                 REFERENCES produto(id)

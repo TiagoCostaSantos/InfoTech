@@ -19,23 +19,26 @@ public class EstoqueEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public EstoqueEntity setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Integer quantidade) {
+    public EstoqueEntity setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+        return this;
     }
 
     public ProdutoEntity getProduto() {
         return produto;
     }
 
-    public void setProduto(ProdutoEntity produto) {
+    public EstoqueEntity setProduto(ProdutoEntity produto) {
         this.produto = produto;
+        return this;
     }
 }
