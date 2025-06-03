@@ -54,10 +54,10 @@ public class ProdutoController {
         return "listar-produtos";
     }
 // alterei o UUID na frente do @RequestParam para String
-    @GetMapping("/editar-produto")
-    public String editarProduto(@RequestParam UUID  uuid, Model model){
-        var produtoEncontrado = produtoUseCase.buscarProdutoPorUuid(uuid.toString());
-        model.addAttribute("produto", new ProdutoModel());
-        return "editar-produto";
-    }
+//    @GetMapping("/editar-produto")
+//    public String editarProduto(@RequestParam UUID  uuid, Model model){
+//        var produtoEncontrado = produtoUseCase.buscarProdutoPorUuid(uuid.toString());
+//        model.addAttribute("produto", new ProdutoModel());
+//        return "editar-produto";
+//    }
 }

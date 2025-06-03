@@ -2,27 +2,35 @@
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="imagex/png" href="../icon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../product.css">
     <title>Inicio</title>
 </head>
-
 <style>
-    body{
-        background: #e1e2ef;
+    a{
+      background-color: rgb(130, 106, 251);
+      display: inline-block;
+      padding: 10px 20px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
     }
 </style>
 <body>
-
     <div class="container">
-        <h1>Sistema de Produtos</h1>
 
+        <center><h1>INFOTECH</h1><h1> Sistema de Produtos</h1></center>
         <div class="button-container">
+            <center>
             <a th:href="@{/produtos/cadastrar}" class="btn3">Cadastrar Produto</a>
             <a th:href="@{/produtos/listagem}" class="btn3">Listar Produto</a>
             <a th:href="@{/usuario/cadastro}" class="btn3">Cadastrar Usuario</a>
+            </center>
         </div>
-    </div>
+        <br><br>
 
+    </div>
 </body>
 </html>
