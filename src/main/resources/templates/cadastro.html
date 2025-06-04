@@ -33,25 +33,29 @@
 
             <form th:action="@{/usuario/cadastrar}" th:object="${usuario}" method="post">
                 <h2>Cadastrar</h2>
-                <div class="input-box">
-                    <input type="text" th:field="*{nome}" id="username" required>
-                    <label for="username">Username</label>
+                <br>
+                <div>
+                    <input type="text" placeholder="Username" th:field="*{nome}" id="username" required>
+
                 </div>
-                <div class="input-box">
-                    <input type="email" th:field="*{email}" id="email" required>
-                    <label for="email">E-mail</label>
+                <br>
+                <div>
+                    <input type="email" placeholder="Email" th:field="*{email}" id="email" required>
+
                 </div>
-                <div class="input-box">
-                    <input type="password" th:field="*{senha}" id="senha" required>
-                    <label for="senha">Senha</label>
+                <br>
+                <div>
+                    <input type="password" placeholder="Senha" th:field="*{senha}" id="senha" required>
+
                 </div><br>
                 <div class="lembrar">
                     <label><input type="checkbox">Eu concordo com os termos e condições</label>
                 </div>
-                <button class="btn" type="submit">Logar</button><br>
+
                 <div class="registrar-link">
                     <p>Possui uma conta?<a class="LoginBtn-link" href="#">Faça Login</a></p>
                 </div>
+                <button class="btn" type="submit">Logar</button><br>
             </form>
         </div>
         <a th:href="@{/}" class="btn btn-warning">Voltar início</a>
