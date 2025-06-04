@@ -3,40 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/static/icon.jpg" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../register.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="imagex/png" href="../icon.ico">
+    <link rel="stylesheet" href="../product.css">
     <script src=".../js/script.js"></script>
     <title>Account</title>
+<style>
+    .input-box{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+    }
+    .form .input-box {
+    width: 100%;
+    margin-top: 20px;
+}
+</style>
 </head>
 <body>
     <center>
-        <div class="form-wrapper Cadastro">
+        <div class="container">
 
             <form th:action="@{/usuario/cadastrar}" th:object="${usuario}" method="post">
                 <h2>Cadastrar</h2>
-                <div class="input-grupo">
-                    <input type="text" th:field="*{nome}" id="username" required>
-                    <label for="username">Username</label>
+                <br>
+                <div>
+                    <input type="text" placeholder="Username" th:field="*{nome}" id="username" required>
+
                 </div>
-                <div class="input-grupo">
-                    <input type="email" th:field="*{email}" id="email" required>
-                    <label for="email">E-mail</label>
+                <br>
+                <div>
+                    <input type="email" placeholder="Email" th:field="*{email}" id="email" required>
+
                 </div>
-                <div class="input-grupo">
-                    <input type="password" th:field="*{senha}" id="senha" required>
-                    <label for="senha">Senha</label>
-                </div>
+                <br>
+                <div>
+                    <input type="password" placeholder="Senha" th:field="*{senha}" id="senha" required>
+
+                </div><br>
                 <div class="lembrar">
                     <label><input type="checkbox">Eu concordo com os termos e condições</label>
                 </div>
-                <button type="submit">Logar</button>
+
                 <div class="registrar-link">
                     <p>Possui uma conta?<a class="LoginBtn-link" href="#">Faça Login</a></p>
                 </div>
+                <button class="btn" type="submit">Logar</button><br>
             </form>
         </div>
+        <a th:href="@{/}" class="btn btn-warning">Voltar início</a>
     </div>
     </center>
 
