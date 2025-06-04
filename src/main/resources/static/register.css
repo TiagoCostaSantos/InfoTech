@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: darkblue;
+    background: #8774FF;
 
 }
 
@@ -21,7 +21,7 @@ body {
     position: relative;
     width: 400px;
     height: 500px;
-    background: rgba(117, 155, 226, 0.488);
+    background: #4d3ac4;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -100,8 +100,14 @@ button {
     border-radius: 40px;
     cursor: pointer;
     font-size: 16px;
-    color: darkblue;
+    color: #8774FF;
     font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    background: #8774FF;
+    color: white;
 }
 
 .registrar-link{
@@ -119,4 +125,33 @@ button {
 
 .registrar-link p a:hover{
     text-decoration: underline;
+}
+
+.btnInicio-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btnInicio {
+    width: 40%;
+    height: 40px;
+    background: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #8774FF;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btnInicio:hover {
+    background: #8774FF;
+    color: white;
 }
