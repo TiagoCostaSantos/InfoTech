@@ -74,9 +74,6 @@ public class ProdutoEntity {
 
     public void setEstoque(EstoqueEntity estoque) {
         this.estoque = estoque;
-//        if (estoque != null){
-//            estoque.setProduto(this);
-//        }
     }
 
     public List<CaracteristicaEntity> getCaracteristicas() {
